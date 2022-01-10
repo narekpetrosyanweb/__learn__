@@ -2,9 +2,10 @@ import { Application, Rectangle } from "pixi.js";
 import { Orientation } from "./constants";
 import { MainView } from "./main-view";
 import manifest from "./manifest.json";
+import { store } from "./store";
 import { centerRect, clamp, fitRect, lp } from "./utils";
 
-class App extends Application {
+export class App extends Application {
   private _orientation: Orientation;
   private _gameDiv: HTMLDivElement;
   private _mainView: MainView;
@@ -64,7 +65,9 @@ class App extends Application {
 
   private _onLoadComplete(): void {
     this._mainView = new MainView();
+    this._mainView.scale.set(this.viewScale);
     this._mainView.build();
+    this._mainView.rebuild();
     this.stage.addChild(this._mainView);
   }
 
@@ -126,4 +129,4 @@ class App extends Application {
   }
 }
 
-new App();
+store.app = new App();
