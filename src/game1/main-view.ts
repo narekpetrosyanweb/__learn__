@@ -1,35 +1,39 @@
-import { Container, Sprite, Ticker } from "pixi.js";
+import { Container, Sprite, Text } from "pixi.js";
 import { store } from "./store";
 
 export class MainView extends Container {
-  private _img: Sprite;
-
   public constructor() {
     super();
   }
 
   public rebuild(): void {
-    const { width, height } = store.app.viewBounds;
-    this._img.position.set(width / 2, height / 2);
+    console.warn("main view rebuild");
   }
 
   public build(): void {
     console.warn("main view build");
-    const img = Sprite.from("assets/images/pig.png");
-    img.anchor.set(0.5, 0.5);
+    const array = ["elephant", "giraffe", "hippo", "monkey", "panda", "parrot", "penguin", "pig", "rabbit", "snake"];
+    const animals = new Container();
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        const name = array[j + 3 * i];
+        const animal = new Container();
+        const img = Sprite.from("assets/images/" + name + ".png");
+        img.scale.set(0.5, 0.5);
+        img.anchor.set(0.5);
 
-    store.app.ticker.add(animate);
-    // console.warn(store.app.renderer.width);
+        const nameTxt = new Text(name);
+        nameTxt.anchor.set(0.5);
 
-    this.addChild(img);
+        animal.addChild(img);
+        animal.addChild(nameTxt);
+        animal.position.set(j * 300, i * 300);
 
-    function animate(): void {
-      img.rotation += 0.1;
-      console.warn(img.rotation);
+        animals.addChild(animal);
+      }
     }
 
-    Ticker.shared.add(animate);
-
-    this._img = img;
+    this.addChild(animals);
+    animals.position.set(store.app.renderer.width / 2, store.app.renderer.height / 2);
   }
 }
