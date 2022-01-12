@@ -1,0 +1,6 @@
+{
+  "boardsize": 9,
+  "cellWidth": 75,
+  "initialballs": 3,
+  "queuessize": 3
+}
