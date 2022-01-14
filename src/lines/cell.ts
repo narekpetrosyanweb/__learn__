@@ -1,26 +1,15 @@
-import { Container, Graphics, utils } from "pixi.js";
-import { Ball } from "./ball";
+import { Container, Graphics } from "pixi.js";
 
 export class Cell extends Container {
-  public ball: Ball;
-  public constructor(size: number) {
+  public constructor(size: number, reccolor: number) {
     super();
-    this.createBlankgraf(size);
+    this.createBlankgraf(size, reccolor);
   }
 
-  public createBlankgraf(size: number): void {
-    const color = utils.rgb2hex([1.0, 0, 0]);
+  public createBlankgraf(size: number, reccolor: number): void {
     const rect = new Graphics();
-    rect.beginFill(0x5f6ff0f);
+    rect.beginFill(reccolor);
     rect.drawRoundedRect(0, 0, size, size, 0);
-    const ball = new Ball(size / 2, color);
-    // ball.visible = true;
-    this.ball = ball;
     this.addChild(rect);
-    this.addChild(ball);
-  }
-
-  public showBall(): void {
-    this.ball.visible = true;
   }
 }

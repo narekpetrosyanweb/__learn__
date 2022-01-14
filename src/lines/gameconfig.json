@@ -1,6 +1,8 @@
 {
   "boardsize": 9,
   "cellWidth": 75,
-  "initialballs": 3,
-  "queuessize": 3
+  "ballWidth": 60,
+  "initailballs": 3,
+  "queuesize": 3,
+  "arr": ["0xFD8A00", "0x6BFD00", "0x00FDE6", "0x0000FD", "0xFD0000", "0x6000FE"]
 }
