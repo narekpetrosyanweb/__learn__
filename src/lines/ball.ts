@@ -10,5 +10,6 @@ export class Ball extends Graphics {
   public createBall(radius: number, clr: number): void {
     this.beginFill(clr);
     this.drawCircle(radius, radius, radius);
+    this.lineStyle(5, 0x6bfd00, 1);
   }
 }

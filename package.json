@@ -35,6 +35,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@pixi/filter-drop-shadow": "^4.1.5",
     "pixi.js": "^6.2.0"
   }
 }

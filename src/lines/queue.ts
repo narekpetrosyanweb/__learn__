@@ -3,6 +3,7 @@ import { Ball } from "./ball";
 import gameconfig from "./gameconfig.json";
 
 export class Queue extends Container {
+  public ballsColor: number[] = [];
   public constructor() {
     super();
 
@@ -15,7 +16,10 @@ export class Queue extends Container {
 
   public build(): void {
     for (let i = 0; i < gameconfig.queuesize; i++) {
-      const ball = new Ball(gameconfig.ballWidth / 2, this.getRndClr());
+      const color = this.getRndClr();
+
+      this.ballsColor[i] = color;
+      const ball = new Ball(gameconfig.ballWidth / 2, color);
       ball.position.set(i * (ball.width + 6), 0);
       this.addChild(ball);
     }
